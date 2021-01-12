@@ -31,13 +31,17 @@ define( 'DB_PASSWORD', 'password_here' );
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
 
-define('SLAVE_HOST', 'ip_add_of_slave');
-
 /** Database Charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
 
 /** The Database Collate type. Don't change this if in doubt. */
 define( 'DB_COLLATE', '' );
+
+/**MysQL slave hostname */
+define('SLAVE_HOST', 'ip_add_of_slave');
+
+/**for memcached */
+define( 'WP_CACHE_KEY_SALT', 'memcached_host' );
 
 /**#@+
  * Authentication Unique Keys and Salts.

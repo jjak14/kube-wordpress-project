@@ -16,6 +16,8 @@ COPY hyperdb/db.php /var/www/html/wp-content/
 
 COPY hyperdb/wp-config.php /var/www/html/wp-config.php
 
+COPY memcached/object-cache.php /var/www/html/wp-content/
+
 ENV DBHOST=mysql-master-service
 
 ENV SLAVEHOST=mysql-slave-service
@@ -25,6 +27,8 @@ ENV DBUSER=wpuser
 ENV DBPASSWORD=password
 
 ENV DBNAME=wpdb
+
+ENV MEMCACHEDHOST=memcached-service 
 
 COPY entrypoint.sh /entrypoint.sh
 
