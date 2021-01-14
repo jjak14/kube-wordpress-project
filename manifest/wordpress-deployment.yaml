@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-deployment
+  labels:
+    app: wordpress
+spec:
+  replicas: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      containers:
+      - name: wordpress
+        image: jjaka/kub-wordpress:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: DBHOST
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-config
+              key: DB_HOST
+        - name: SLAVEHOST
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-config
+              key: SLAVE_HOST
+        - name: DBUSER
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-config
+              key: DB_USER
+        - name: DBNAME
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-config
+              key: DB_NAME
+        - name: MEMCACHEDHOST
+          valueFrom:
+            configMapKeyRef:
+              name: wordpress-config
+              key: MEMCACHED_HOST
+        - name: DBPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wordpress-secrets
+              key: MYSQLPASSWORD
