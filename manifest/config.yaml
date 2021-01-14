@@ -6,6 +6,6 @@ metadata:
 data:
   DB_NAME: wpdb
   DB_USER: wpuser
-  DB_HOST: mysql-master-service
+  DB_HOST: mysql-service
   SLAVE_HOST: mysql-slave-service
   MEMCACHED_HOST: memcached-service
